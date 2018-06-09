@@ -2,6 +2,6 @@
 
 int main()
 {
-    printf("hello, world\n");
+    printf("%d", getchar() != EOF);
     return 0;
 }
