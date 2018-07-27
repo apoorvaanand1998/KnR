@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define linewidth 5
+#define linewidth 10
 
 void push(char buf[], int c);
 void empty(char buf[]);
@@ -10,16 +10,20 @@ int top = 0;
 int main()
 {
     char buf[linewidth];
-    push(buf, 'a');
-    push(buf, ' ');
-    push(buf, 'c');
-    printf("%s\n", buf);
-    empty(buf);
-    push(buf, 'd');
-    push(buf, 'u');
-    printf("%s\n", buf);
-    empty(buf);
-    printf("tis empty? %s\n", buf);
+    int c, pc = -1;
+    
+    while ((c = getchar()) != EOF) {
+        if (c == '\n')
+            continue;
+        if (pc != ' ' && c == ' ') {
+            empty(buf);
+        }
+        else {
+            push(buf, c);
+        }
+        printf("%s\n", buf);
+        pc = c;
+    }
     return 0;
 }
 
