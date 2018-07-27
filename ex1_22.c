@@ -9,6 +9,17 @@ int top = 0;
 
 int main()
 {
+    char buf[linewidth];
+    push(buf, 'a');
+    push(buf, ' ');
+    push(buf, 'c');
+    printf("%s\n", buf);
+    empty(buf);
+    push(buf, 'd');
+    push(buf, 'u');
+    printf("%s\n", buf);
+    empty(buf);
+    printf("tis empty? %s\n", buf);
     return 0;
 }
 
