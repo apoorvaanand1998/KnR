@@ -15,9 +15,9 @@ int main()
             ++n3;
     }
         
-        printf("The number of blanks = %d", n1);
-        printf("The number of tabs = %d", n2);
-        printf("The number of newlines = %d", n3);
+    printf("The number of blanks = %d", n1);
+    printf("The number of tabs = %d", n2);
+    printf("The number of newlines = %d", n3);
         
-        return 0;
+    return 0;
 }
