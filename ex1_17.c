@@ -8,8 +8,8 @@ int main()
     int len;
     
     while ((len = getline1(line, 1000)) > 0) {
-    if (len > 80)
-        printf("%s", line);
+        if (len > 80)
+            printf("%s", line);
     }
     
     return 0;
