@@ -18,8 +18,10 @@ int main()
 
     if (c == '"')
       ++noq;
+    
     if ((noq % 2) == 1)
       buf[i++] = c;
+    
     else {      
       if (singlelinec == 1) {
 	if (c == '\n') {
