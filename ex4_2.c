@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <math.h>
+#include <float.h>
 
 double atof(char s[])
 {
@@ -27,6 +29,11 @@ double atof(char s[])
   for (exp_val = 0.0; s[i] != '\0'; i++)
     exp_val = (exp_val * 10) + (s[i] - '0');
 
+  if (exp_sign == -1)
+    power *= pow(10, exp_val);
+  else
+    power /= pow(10, exp_val);
+  /*
   if (exp_sign == -1) {
     while (exp_val > 0) {
       power *= 10;
@@ -38,16 +45,16 @@ double atof(char s[])
       power /= 10;
       exp_val--;
     }
-  }
+    } */
   return sign * val / power;
 }
 
 int main()
 {
   double sd;
-  char s[20] = "123.45e-6";
+  char s[20] = "123.45513e-9";
 
   sd = atof(s);
-  printf("%.17f\n", sd);
+  printf("%.*e\n", FLT_DIG, sd); // https://stackoverflow.com/a/16839757/4338528
   return 0;
 }
