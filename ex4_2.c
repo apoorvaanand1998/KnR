@@ -25,7 +25,8 @@ double atof(char s[])
   if (s[i] == 'e' || s[i] == 'E')
     i++;
   exp_sign = (s[i] == '-') ? -1 : 1;
-  i++;
+  if (s[i] == '+' || s[i] == '-')
+    i++;
   for (exp_val = 0.0; s[i] != '\0'; i++)
     exp_val = (exp_val * 10) + (s[i] - '0');
 
@@ -33,19 +34,7 @@ double atof(char s[])
     power *= pow(10, exp_val);
   else
     power /= pow(10, exp_val);
-  /*
-  if (exp_sign == -1) {
-    while (exp_val > 0) {
-      power *= 10;
-      exp_val--;
-    }
-  }
-  else {
-    while (exp_val > 0) {
-      power /= 10;
-      exp_val--;
-    }
-    } */
+ 
   return sign * val / power;
 }
 
