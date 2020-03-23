@@ -152,6 +152,7 @@ int main()
       else if (strcmp(s, "pow") == 0) {
 	op2 = pop();
 	push(pow(pop(), op2));
+      }
       else
 	printf("Error : Invalid Math\n");
       break;
@@ -208,6 +209,3 @@ int main()
   }
   return 0;
 }
-
-
-
