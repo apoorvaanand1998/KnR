@@ -51,7 +51,7 @@ int getfloat(float *fp)
       val = val * 10 + (c - '0');
     }
   }
-  printf("%d %f %f\n", sign, val, exp);
+
   *fp = sign * val / exp;
 
   if (c != EOF)
