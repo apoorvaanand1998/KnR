@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 // AAH! I GET IT! I DON'T WANT TO WRITE THE SAME FUNCTIONS AGAIN FULLY!
 // Skipped getop and strindex, got enough practice translating
@@ -36,8 +37,7 @@ int my_getline2(char *s, int lim) // from chapter 4
 void reverse(char *s)
 {
   int c, i, j;
-
-  for (i = 0, j = strlen(s)-1; i < j; i++, j++) {
+  for (i = 0, j = strlen(s)-1; i < j; i++, j--) {
     c = *(s + i);
     *(s + i) = *(s + j);
     *(s + j) = c;
@@ -68,6 +68,7 @@ void itoa(int n, char *s)
   do {
     *(s + offset++) = n % 10 + '0';
   } while ((n /= 10) > 0);
+  s[offset] = '\0';
 
   if (sign < 0)
     *(s + offset++) = '-';
@@ -79,11 +80,19 @@ int main()
 {
   char s[100];
   int lim = 99;
-
+  char is[10];
+  int n = 4224096;
+  
   my_getline1(s, lim);
   printf("%s\n", s);
   my_getline2(s, lim);
   printf("%s\n", s);
+
+  itoa(n, is);
+
+  printf("%s\n", is);
+  printf("%d\n", atoi(is));
+  
   return 0;
 }
 
