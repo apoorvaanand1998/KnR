@@ -5,7 +5,6 @@ static char daytab[2][13] =  {
 			      {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
 };
 
-/* day_of_year: set day of year from month & day */
 int day_of_year(int year, int month, int day)
 {
   int i, leap;
@@ -20,7 +19,6 @@ int day_of_year(int year, int month, int day)
   return day;
 }
 
-/* month_day: set month, day from day of year */
 int month_day(int year, int yearday, int *pmonth, int *pday)
 {
   int i, leap;
@@ -38,8 +36,7 @@ int month_day(int year, int yearday, int *pmonth, int *pday)
   return 0;
 }
 
-
-/* main: test day_of_year and month_day */
+/* main: test day_of_year and month_day (taken from clc-wiki) */
 int main(void)
 {
   int year, month, day, yearday;
@@ -54,7 +51,6 @@ int main(void)
 	printf("month = %d, day = %d\n", month, day);
       }
     }
-  }
-	
+  }	
   return 0;
 }
