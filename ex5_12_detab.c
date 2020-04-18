@@ -13,7 +13,7 @@ int decide_mn(int argc, char *argv[], int *m, int *n)
     while (--argc > 0) {
       // current character array
       curr_ca = *++argv;
-      // if first character of next character array is '+'
+      // if first character character array is '+'
       if (*curr_ca == '+') {
 	*n = atoi(curr_ca+1);
       }
