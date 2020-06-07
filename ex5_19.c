@@ -14,29 +14,29 @@ int gettoken(void)
   int c;
   char *p = token;
 
-  while ((c = getc()) == ' ' || c == '\t')
+  while ((c = getc(stdin)) == ' ' || c == '\t')
     ;
 
   if (c == '(') {
-    if ((c = getc()) == ')') {
+    if ((c = getc(stdin)) == ')') {
       strcpy(token, "()");
       return PARENS;
     }
     else {
-      ungetc(c);
+      ungetc(c, stdin);
       return '(';
     }
   }
   else if (c == '[') {
-    for (*p++ = c; (*p++ = getc()) != ']'; )
+    for (*p++ = c; (*p++ = getc(stdin)) != ']'; )
       ;
     *p = '\0';
     return BRACKETS;
   }
   else if (isalpha(c)) {
-    for (*p++ = c; isalnum(c = getc()); )
+    for (*p++ = c; isalnum(c = getc(stdin)); )
       *p++ = c;
-    ungetc(c);
+    ungetc(c, stdin);
     *p = '\0';
     return NAME;
   }
@@ -46,20 +46,30 @@ int gettoken(void)
 
 int main()
 {
-  int type;
-  char temp[MAXTOKEN];
+  int type, prev_type;
+  char temp[1400];
   
-  while (gettoken() != EOF) {
+  while ((prev_type = gettoken()) != EOF) {
     strcpy(out, token);
     while ((type = gettoken()) != '\n') {
       if (type == PARENS || type == BRACKETS) {
-	strcat(out, token);
+	if (prev_type == '*') {
+	  sprintf(temp, "(%s)", out);
+	  strcat(temp, token);
+	  strcpy(out, temp);
+	}
+	else {
+	  strcat(out, token);
+	}
+	prev_type = type;
       }
       else if (type == '*') {
-	sprintf(temp, "(*%s)", out);
+	prev_type = type;
+	sprintf(temp, "*%s", out);
 	strcpy(out, temp);
       }
       else if (type == NAME) {
+	prev_type = type;
 	sprintf(temp, "%s %s", token, out);
 	strcpy(out, temp);
       }
